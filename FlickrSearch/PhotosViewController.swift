@@ -8,25 +8,34 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var client = APIClient()
     var photos = [Photo]()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
-        searchPhotos(with: "dogs")
+        searchBar.delegate = self
     }
 
     func searchPhotos(with text: String) {
-        client.getPhotos(searchText: text) { (photosFound, initialText, error) in
-            self.photos = photosFound
+        guard !text.isEmpty else {
+            self.photos = []
+            tableView.reloadData()
+            return
+        }
+        client.getPhotos(searchText: text) {[weak self](photosFound, initialText, error) in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                guard initialText == self?.searchBar.text else {
+                    return
+                }
+                self?.photos = photosFound
+                self?.tableView.reloadData()
             }
         }
     }
@@ -62,6 +71,13 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
+
+    //MARK:- UISearchBarDelegate
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchPhotos(with: searchText)
+    }
+
 
 }
 
