@@ -12,6 +12,8 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     var client = APIClient()
     var photos = [Photo]()
+    var photosToUpdate = Set<Photo>()
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
@@ -58,10 +60,14 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let image = photo.image {
             cell.imageView?.image = image
         } else {
+            photosToUpdate.insert(photo)
             client.loadImage(for: photo) { (error) in
                 DispatchQueue.main.async {
                     cell.imageView?.image = photo.image
-                    tableView.reloadData()
+                    self.photosToUpdate.remove(photo)
+                    if self.photosToUpdate.isEmpty {
+                        tableView.reloadData()
+                    }
                 }
             }
         }
