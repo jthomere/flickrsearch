@@ -20,6 +20,8 @@
 		AE1C8C4E20B4E1AE00E8E856 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C8C4C20B4E1AE00E8E856 /* APIClient.swift */; };
 		AE1C8C5020B4E77200E8E856 /* PhotoSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C8C4F20B4E77200E8E856 /* PhotoSearchResult.swift */; };
 		AE1C8C5120B4E77200E8E856 /* PhotoSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C8C4F20B4E77200E8E856 /* PhotoSearchResult.swift */; };
+		AE1C8C5320B4F9AB00E8E856 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C8C5220B4F9AB00E8E856 /* PhotoDetailViewController.swift */; };
+		AE1C8C5420B4F9AB00E8E856 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C8C5220B4F9AB00E8E856 /* PhotoDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,7 @@
 		AE1C8C4920B4E0AB00E8E856 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		AE1C8C4C20B4E1AE00E8E856 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		AE1C8C4F20B4E77200E8E856 /* PhotoSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchResult.swift; sourceTree = "<group>"; };
+		AE1C8C5220B4F9AB00E8E856 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,7 @@
 				AE1C8C2620B4DE8300E8E856 /* AppDelegate.swift */,
 				AE1C8C4C20B4E1AE00E8E856 /* APIClient.swift */,
 				AE1C8C2820B4DE8300E8E856 /* PhotosViewController.swift */,
+				AE1C8C5220B4F9AB00E8E856 /* PhotoDetailViewController.swift */,
 				AE1C8C4920B4E0AB00E8E856 /* Photo.swift */,
 				AE1C8C4F20B4E77200E8E856 /* PhotoSearchResult.swift */,
 				AE1C8C2A20B4DE8300E8E856 /* Main.storyboard */,
@@ -215,6 +219,7 @@
 				AE1C8C4A20B4E0AB00E8E856 /* Photo.swift in Sources */,
 				AE1C8C2920B4DE8300E8E856 /* PhotosViewController.swift in Sources */,
 				AE1C8C2720B4DE8300E8E856 /* AppDelegate.swift in Sources */,
+				AE1C8C5320B4F9AB00E8E856 /* PhotoDetailViewController.swift in Sources */,
 				AE1C8C4D20B4E1AE00E8E856 /* APIClient.swift in Sources */,
 				AE1C8C2F20B4DE8300E8E856 /* FlickrSearch.xcdatamodeld in Sources */,
 				AE1C8C5020B4E77200E8E856 /* PhotoSearchResult.swift in Sources */,
@@ -228,6 +233,7 @@
 				AE1C8C4B20B4E0AB00E8E856 /* Photo.swift in Sources */,
 				AE1C8C5120B4E77200E8E856 /* PhotoSearchResult.swift in Sources */,
 				AE1C8C3F20B4DE8400E8E856 /* FlickrSearchTests.swift in Sources */,
+				AE1C8C5420B4F9AB00E8E856 /* PhotoDetailViewController.swift in Sources */,
 				AE1C8C4E20B4E1AE00E8E856 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

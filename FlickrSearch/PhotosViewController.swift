@@ -78,6 +78,17 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchPhotos(with: searchText)
     }
 
+     // MARK: - Navigation
+
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowPhoto") {
+            if let viewController = segue.destination as? PhotoDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                    viewController.photo = photos[indexPath.row]
+            }
+        }
+     }
+
 
 }
 
