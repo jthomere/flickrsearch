@@ -13,6 +13,8 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var client = APIClient()
     var photos = [Photo]()
     var photosToUpdate = Set<Photo>()
+    var currentPage = 1
+    var pages: Int?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,13 +33,16 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tableView.reloadData()
             return
         }
-        client.getPhotos(searchText: text) {[weak self](photosFound, initialText, error) in
+        client.getPhotos(searchText: text, page: currentPage) {[weak self](photosFound, pages, initialText, error) in
             DispatchQueue.main.async {
-                guard initialText == self?.searchBar.text else {
-                    return
+                if let controller = self {
+                    guard initialText == controller.searchBar.text else {
+                        return
+                    }
+                    controller.pages = pages
+                    controller.photos = controller.photos + photosFound
+                    controller.tableView.reloadData()
                 }
-                self?.photos = photosFound
-                self?.tableView.reloadData()
             }
         }
     }
@@ -54,6 +59,12 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath)
+        if indexPath.row >= photos.count - 1 {
+            if let pages = pages, currentPage < pages {
+                currentPage += 1
+                searchPhotos(with: searchBar.text ?? "")
+            }
+        }
         let photo = photos[indexPath.row]
         cell.textLabel?.text = photo.title
         cell.imageView?.sizeToFit()
@@ -81,6 +92,8 @@ class PhotosViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK:- UISearchBarDelegate
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        currentPage = 1
+        photos = []
         searchPhotos(with: searchText)
     }
 

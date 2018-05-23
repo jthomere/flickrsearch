@@ -14,6 +14,7 @@ class PhotoSearchResult: NSObject, Decodable {
 }
 class SearchPage: NSObject, Decodable {
     var page: Int?
+    var pages: Int?
     var photo: [Photo]?
 
 }
